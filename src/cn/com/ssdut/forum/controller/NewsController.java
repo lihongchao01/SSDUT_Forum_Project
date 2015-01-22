@@ -17,7 +17,7 @@ public class NewsController {
 
 	@RequestMapping(value="/test", method=RequestMethod.GET)
 	public String test(){
-		return "others/test";
+		return "others/main";
 	}
 	
 	@RequestMapping(value="/enter", method=RequestMethod.GET)
