@@ -19,7 +19,7 @@ $(document).ready(function(){
 		else {
 			$.ajax({
 	            type : "post",
-	            url  : "register",
+	            url  : "main",
 	            data : {'username':userName,'password':userPwd,'repassword':repassword,'realName':realName},
 	            dataType: "json",
 	            success: function(data){
@@ -63,7 +63,7 @@ $(document).ready(function(){
       <input type="button" id="register_submit" value="submit" style="font-weight:bold;"/>
     </div>
   </div>
-</div>
+
 
 
 

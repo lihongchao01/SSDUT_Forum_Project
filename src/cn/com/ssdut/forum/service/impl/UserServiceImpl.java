@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.com.ssdut.forum.common.IdUtil;
 import cn.com.ssdut.forum.dao.SimpleDao;
 import cn.com.ssdut.forum.service.UserService;
 
@@ -18,17 +19,18 @@ import cn.com.ssdut.forum.service.UserService;
 @Service("UserService")
 public class UserServiceImpl implements UserService{
 	
-	private static final String TABLE = "tp_users";
 
-	@Autowired
-	private @Setter
-	SimpleDao topicSimpleDao;
-	public SimpleDao topicSimpleDao(){
-		return topicSimpleDao;
-	}
-	public void setUserDao(SimpleDao topicSimpleDao){
-		this.topicSimpleDao = topicSimpleDao;
-	}
+		@Autowired
+		private SimpleDao joaSimpleDao;
+
+		public SimpleDao getJoaSimpleDao() {
+			return joaSimpleDao;
+		}
+
+		public void setJoaSimpleDao(SimpleDao joaSimpleDao) {
+			this.joaSimpleDao = joaSimpleDao;
+		}
+		
 	
 	
 
@@ -41,12 +43,27 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Object register(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		String userId=IdUtil.uuid();
+		map.put("userType", 2);
+		map.put("userId", userId);
+		
+		String sql="insert into tp_users (userId, userName, userPwd, userType)"
+				+ " values(:userId,:userName,:userPwd,:userType)";
+		joaSimpleDao.executeUpdate(sql, map);
+	
+		return "success";
 	}
 	@Override
-	public boolean user_register_samenametest(Map<String, Object> map) {
+	public boolean user_register_samenametest(Map<String, Object> reqs) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql="select username from db_user where username=:username";
+		if(joaSimpleDao.count(sql, reqs)==1 )
+		{	
+			return true;
+		}
+		else{
+			return false;
+		}	
 	}
 	@Override
 	public void loginEnsure(String username) {
