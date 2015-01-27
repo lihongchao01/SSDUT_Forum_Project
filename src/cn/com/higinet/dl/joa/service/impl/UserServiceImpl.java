@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService{
 		map.put("userType", 2);
 		map.put("userId", userId);
 		
-		String sql="insert into tp_users (userId, userName, userPwd, userType)"
-				+ " values(:userId,:userName,:userPwd,:userType)";
+		String sql="insert into tp_users (userId, userName, userPwd, userType,realName)"
+				+ " values(:userId,:userName,:userPwd,:userType,:realName)";
 		joaSimpleDao.executeUpdate(sql, map);
 	
 		return "success";
@@ -89,9 +89,17 @@ public class UserServiceImpl implements UserService{
 	        return result;
 	}
 	@Override
-	public String getUserType(String user_id) {
+	public int  getUserType(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		Map<String, Object> result = joaSimpleDao.retrieve("tp_users", map);
+		if(null != result) {
+			return Integer.parseInt( result.get("USERTYPE").toString());
+		}
+		else {
+			return 0;
+		}
 	}
 	@Override
 	public List<Map<String, Object>> getUserList() {
@@ -108,11 +116,7 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
-	@Override
-	public String userDelete(Map<String, Object> reqs, Map<String, Object> conds) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public boolean user_login(Map<String, Object> map) {
@@ -132,6 +136,75 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		String sql="select * from tp_users where userName=:userName";
 		return joaSimpleDao.queryForList(sql, map).get(0);
+	}
+
+	@Override
+	public List<Map<String, Object>> getAllUser(int userType) {
+		// TODO Auto-generated method stub
+		String sql = "select * from tp_users where userType=2";
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userType", userType);
+		return joaSimpleDao.queryForList(sql, params);
+	}
+
+	@Override
+	public String addUser(Map<String, Object> reqs) {
+		// TODO Auto-generated method stub
+		String result = "success";
+		String userId = IdUtil.uuid();
+		reqs.put("userId", userId);
+		reqs.put("userType", 2);
+		try {
+			String sql="insert into tp_users (userId, userName, userPwd, userType,realName)"
+					+ " values(:userId,:userName,:userPwd,:userType,:realName)";
+			joaSimpleDao.executeUpdate(sql, reqs);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			result = "failed";
+		}
+		return result;
+	}
+
+	@Override
+	public String deleteUser(Map<String, Object> reqs) {
+		// TODO Auto-generated method stub
+		String result = "success";
+		String sql = "delete from tp_users where userId=:userId";
+	
+		try {
+			joaSimpleDao.executeUpdate(sql, reqs);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			result = "failed";
+		}
+		return result;
+	}
+
+	@Override
+	public Map<String, Object> getUserDetail(Map<String, Object> reqs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String editUser(Map<String, Object> reqs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUserIdByUsername(String userName) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("userName", userName);
+		String sql = "select * from tp_users where userName=:userName";
+		List<Map<String, Object>> list = joaSimpleDao.queryForList(sql, map);
+		return list.get(0).get("userId").toString();
 	}
 
 

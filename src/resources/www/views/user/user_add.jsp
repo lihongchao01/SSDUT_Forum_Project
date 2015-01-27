@@ -33,7 +33,7 @@ $(document).ready(function(){
 	            dataType: "json",
 	            success: function(data){
 	            	if(data.result=="success"){
-	            		alert("您已成功注册!");
+	            		alert("您已成功添加!");
 	            		jcl.go('/SSDUT_Forum/userinfoview');
 	            	}
 	            	else if(data.result=="different"){
@@ -57,7 +57,7 @@ $(document).ready(function(){
 
   
   <div class="register">
-    <span class="register_tip">用户注册</span>
+    <span class="register_tip">添加新用户</span>
     <div class="register_form">
       <span>用户账号 : </span>
       <input type="text" name="userName" id="userName" value="" /><br/><br/>
@@ -67,7 +67,7 @@ $(document).ready(function(){
       <input type="password" name="userPwd" id="userPwd" value="" /><br/><br/>
       <span>真实姓名 : </span>
       <input type="text" name="realName" id="realName" value="" /><br/><br/>
-      <input type="button" id="register_submit2" value="submit" />
+      <input type="button" id="register_submit2" value="添加" />
     </div>
   </div>
 

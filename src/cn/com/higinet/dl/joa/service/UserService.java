@@ -18,7 +18,6 @@ public interface UserService {
 	public void loginEnsure(String userName);
 	
 	
-	public String userDelete(Map<String, Object> reqs, Map<String, Object> conds);
 
 
 	public Map<String, Object> getUserAccountInfo(String userId);
@@ -27,13 +26,23 @@ public interface UserService {
 
 	public String userInfoSave(Map<String, Object> reqs, Map<String, Object> conds);
 
-
-	public String getUserType(String userId);
+    public String getUserIdByUsername(String userName);
+	public int getUserType(String userId);
 
 	public List<Map<String, Object>> getUserList();
 
 	Map<String, Object> getUserInfo(Map<String, Object> map);
 
 	public String getPassword(Map<String, Object> reqs);
+	
+	public List<Map<String, Object>> getAllUser(int usrType);
+
+	public String addUser(Map<String, Object> reqs);
+
+	public String deleteUser(Map<String, Object> reqs);
+
+	public Map<String, Object> getUserDetail(Map<String, Object> reqs);
+
+	public String editUser(Map<String, Object> reqs);
 
 }

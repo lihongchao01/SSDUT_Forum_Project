@@ -17,11 +17,17 @@
             data : {},
             dataType: "json",
             success:function(data){
-            	var l="<h1>用户基本信息 ：</h1><br/><br/>"+"用户ID："+data.row.USERID+"<br/>"+"用户名："+data.row.USERNAME+"<br/>"+"密码： "+data.row.USERPWD;
+            	
+            	var l="<h1>用户基本信息 ：</h1><br/><br/><br/>"+"用户ID："+data.row.USERID+"<br/>"+"用户名："+data.row.USERNAME+"<br/>"+"密码： "+data.row.USERPWD+"<br/>"+"真实姓名： "+data.row.REALNAME;
 				  $('#userinfo').append(l);
             }
      	}); 
-		
+	 	$('#change_submit').click(function(){
+			  jcl.go("/SSDUT_Forum/changeInfo"); 
+		   });
+	 	$('#delete_submit').click(function(){
+			  jcl.go("/SSDUT_Forum/"); 
+		   });
 	});
 
 </script>
@@ -29,7 +35,8 @@
 <body>
 		<div id="userinfo">
 		
-		
+		<input type="button" value="修改个人信息" id="change_submit"/>
+        <input type="button" value="删除" id="delete_submit"/>
 		</div>
 </body>
 </html>
