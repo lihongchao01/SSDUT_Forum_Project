@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,14 +45,20 @@ public class UserController {
 	public String getLoginView(){
 		return "/user/login";
 	}
+	
 	@RequestMapping(value="/register",method=RequestMethod.GET)
 	public String getRegisterView(){
 		return "/user/register";
+	}
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String returnloginView(){
+		return "/user/login";
 	}
 	@RequestMapping(value="/userinfoview",method=RequestMethod.GET)
 	public String getUserInfoView(){
 		return "/user/user_list";
 	}
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Model login(@RequestParam Map<String, Object> reqs,HttpSession session) {
@@ -60,7 +68,6 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userName", userName);
 		map.put("userPwd", userPwd);
-		
 		if (!userName.equals("") && !userPwd.equals("")) 
 		{
 			if (userService.user_login(map)) 
@@ -68,8 +75,6 @@ public class UserController {
 				session.setAttribute("userName", userName);
 				
 				model.set("result", "success");
-				
-				userService.loginEnsure(userName);
 				
 			} 
 			else {
@@ -108,31 +113,72 @@ public class UserController {
 		}
 		return model;
 	}
-	@RequestMapping(value="/addUser", method=RequestMethod.GET)
-	public String getAddressAddView(HttpSession session) {
-		if(null != session.getAttribute("userName"))
-		    return "user/user_add";
-		else
-			return "user/login";
-	}
 	@RequestMapping(value="/userInfo",method=RequestMethod.POST)
 	public Model getUserInfo(@RequestParam Map<String, Object> map,HttpSession session){
 		Model model =new Model();
-		 String userName= session.getAttribute("userName").toString();
-		 map.put("userName", userName);
+		 String userId= (String)map.get("userId");
+
+		 map.put("userId", userId);
 		 
 		 model.setRow(userService.getUserInfo(map));
 		 return model;
 		 
 	}
-	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public Model deleteUser(@RequestParam Map<String, Object> reqs, HttpSession session) {
+	/**修改后保存用户信息
+	 * 
+	 * @param reqs
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/userInfoSave", method=RequestMethod.POST)
+	public Model userInfoSave(@RequestParam Map<String, Object> reqs,HttpServletRequest request) {
 		Model model = new Model();
-	
+		String userId = reqs.get("userId").toString();
+		Map<String, Object> conds = new HashMap<String, Object>();
+		String realName = reqs.get("realName").toString();
+		String userPwd = reqs.get("userPwd").toString();
+		conds.put("userId", userId);
+		reqs.put("realName", realName);
+		reqs.put("userPwd", userPwd);
+		model.set("result", userService.userInfoSave(reqs, conds));
+		return model;
+	}
+	@RequestMapping(value="/user_info_edit",method=RequestMethod.GET)
+	public String getUserinfoeditview(HttpServletRequest request, HttpServletResponse response){
+		String userId = request.getParameter("userId");
+
+		System.out.println("111userId : " + userId);
 		
-	    String userId = reqs.get("userId").toString();
-	    System.out.print(userId);
-	    //String userId = userService.getUserIdByUsername(userName);
+		request.setAttribute("userId", userId);
+		
+		return "/user/user_info_edit";
+	}
+	
+	@RequestMapping(value="/getUserInfoDetail", method=RequestMethod.POST)
+	public Model getUserInfoDetail(@RequestParam Map<String, Object> reqs,HttpServletRequest request) {
+		Model model = new Model();
+		model.setRow(userService.getUserInfoDetail(reqs));
+		return model; 
+	}
+	
+	/*@RequestMapping(value="/getUserInfoDetail", method=RequestMethod.POST)
+	public Model getUserInfoDetail(@RequestParam Map<String, Object> reqs) {
+		System.out.println("userId");
+		Model model = new Model();
+		
+		String userId = reqs.get("userId").toString();
+		//System.out.println("userId");
+		reqs.put("userId", userId);
+		model.setRow(userService.getUserInfoDetail(reqs));
+		return model;
+	}*/
+	
+	@RequestMapping(value="/user/delete", method=RequestMethod.POST)
+	public Model addressDelete(@RequestParam Map<String, Object> reqs, HttpSession session) {
+		Model model = new Model();
+		
+	    String userName = session.getAttribute("userName").toString();
+	    String userId = userService.getUserIdByUsername(userName);
 	    reqs.put("userId", userId);
 		String result = userService.deleteUser(reqs);
 		model.set("result", result);
@@ -144,7 +190,6 @@ public class UserController {
 	public void getAllUser(@RequestParam Map<String, Object> reqs, 
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
 		String userName = session.getAttribute("userName").toString();
-		System.out.println(userName);
 		int userType =  userService.getUserType(userService.getUserIdByUsername(userName).toString());
 		Map pageInfo = new HashMap();  
         pageInfo.put("page", 1);  

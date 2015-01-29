@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+.userLeft{ width:188px; float:left; min-height:300px; margin-top:10px; margin-bottom:10px; padding-top:2px; padding-bottom:2px;}
+.userLeftMain{width:186px; border:1px solid #ccc; min-height:300px; padding-top:5px;}
+.userTitleBg { width:176px; height:40px; line-height:40px; padding-left:10px; font-size:18px; border:1px solid #ccc; background:#F6F6F6; color:#AB0039; }
+.menu_title { margin-top:-5px;  padding-left:10px; font-size:14px; height:28px; line-height:28px; border-bottom:1px solid #ccc; border-top:1px solid #ccc; color:#AB0039; background:#E5E5E5; }
+.menu_list_on { float:right; margin-top:-18px; margin-right:20px; }
+.ui_layout li { margin-top:8px; margin-bottom:8px; margin-left:25px; color:#999; }
