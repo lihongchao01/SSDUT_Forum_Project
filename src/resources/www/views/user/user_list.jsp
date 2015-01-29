@@ -8,11 +8,13 @@
 <title></title>
 <style type="text/css">
 </style>
+
 <link href="${ctx}/css/common/flexigrid.css" rel="stylesheet" type="text/css" /> 
 <script type="text/javascript" src="${ctx}/js/common/jquery-1.7.2.min.js"></script> 
 <script type="text/javascript" src="${ctx}/js/common/jcl.js"></script>
 <script type="text/javascript" src="${ctx}/js/common/flexigrid.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		
 		
@@ -63,7 +65,7 @@
 		
 		function toolbar(com,grid){
 			if(com == '添加用户')
-    			jcl.go('/SSDUT_Forum/addUser');
+    			jcl.go('/SSDUT_Forum/register');
 			else if(com == '删除用户') {
     			if($('.trSelected',grid).length == 0)
     				alert('请选择要删除的数据');
@@ -80,7 +82,6 @@
                 			    if(data.result=='success'){
                 			  
                 			    	alert('已成功删除用户!');
-                			    	
                 			    	jcl.go('/SSDUT_Forum/userinfoview');
                 			    }
                 			    else {

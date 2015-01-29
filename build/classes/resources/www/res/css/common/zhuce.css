@@ -1,0 +1,107 @@
+@charset "utf-8";
+/* CSS Document */
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;}
+body{font-size:12px;
+
+background:#85D2E2}
+img{border:none;}
+li{list-style:none;}
+input,select,textarea{outline:none;
+						border:none; 
+						background:none;}
+textarea{resize:none;}
+a{text-decoration:none; 
+	color:#656565;}
+
+/*清浮动*/
+.clearfix:after{content:"";display:block;clear:both;}
+.clearfix{zoom:1;}
+.fl{float:left;}
+.fr{float:right;}
+
+/*公用*/
+.comWidth{width:1000px; 
+			margin-left:auto; 
+			margin-right:auto;}
+.leftArea{float:left;}
+.rightArea{float:right;}
+.hide{display:none;}
+.show{display:block;}
+/*注册*/
+.loginBox{width:470px; 
+		border:#999 solid 1px; 
+		margin:30px auto; 
+		position:relative;
+		background-color:#FFF}
+.login_cont{padding:15px 76px;}
+.mb_10{margin-top:30px;}
+.l_tit{ font-color:#000;
+		line-height:20px;
+		font:20px  bold;
+		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif}
+
+
+.user_icon{background:url(../images/icon/user_icon.jpg) right center no-repeat;}
+.mb_10{margin-bottom:10px;}
+
+.login_btn{width:309px; 
+			height:36px; 
+			background:url(../images/icon/login_btn.jpg) left top no-repeat;}
+
+
+.login_input_1{border:#999 solid 1px; 
+			height:32px; 
+			line-height:32px\9; 
+			text-indent:5px; 
+			width:50px;
+			margin:0 0 0 10px;}
+
+.input_item{width:306px; 
+			float:left;}
+
+/*logo*/
+.logoBar{height:100px; 
+		background-color:#1D7AD9;}
+
+a:hover{text-decoration:none;}
+.login_input{border:#999 solid 1px; 
+			height:32px; 
+			line-height:32px\9; 
+			text-indent:5px; 
+			width:200px;
+			margin:0 0 0 10px;}
+.logotit{
+	font:35px Georgia, "Times New Roman", Times, serif,bold;
+	line-height:100px;
+	margin-left:70px;
+}
+.btn_login{
+	margin-left:700px;
+	margin-top:35px;
+	}
+.logo{
+	margin-left:20px;
+	margin-top:-15px;
+	}
+
+
+.form-control{
+				float:right;
+}
+.btn{margin-top:20px;
+margin-bottom::20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

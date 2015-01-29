@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif;}
+.pics_wrap { margin-top:5px;}
+
+.user_center { width:950px; margin:20px auto; }
+.user_top { height:40px; line-height:40px; font-size:14px; border:1px solid #999; color:#666; }
+.welcome { margin-left:25px; }
+.message { float:right; margin-right:50px; }
+#message_count { color:red; text-decoration:underline; }
+#exit { margin-left:10px; margin-top:3px; } 
+
+.infolist{padding-left:5em;font-size:14px;position:relative;color:#494949;min-height:38px;margin:5px 0;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;width:100%;float:left;clear:both;}
+.infolist lable{position:absolute;width:5em;left:0;top:0;overflow:hidden;height:22px;padding:8px 0;line-height:22px;}
+.infolist .liststyle p{line-height:22px;padding:8px 0;}
+.infolist .sex a{display:inline-block;height:38px;line-height:38px;float:left;margin-right:15px;color:#494949;padding-left:20px;background-image:url(../images/sex.png);background-position:2px 12px;background-repeat:no-repeat;background-size:13px auto;}
+.infolist .sex a.active{background-image:url(../images/sex_on.png);}
+.infolist .liststyle .m_text{height:36px;line-height:36px;border-radius:5px;padding:0 10px;background:#F7F7F7;border:1px solid #E8E8E8;color:#9E9E9E;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+.infolist .liststyle .m_age{width:50%;}
+.infolist .liststyle .m_tel{width:65%;}
+.infolist .liststyle .m_address{width:100%;clear:both;}
+.infolist .liststyle .m_password{width:70%;}
+.infolist .liststyle span{position:relative;height:36px;line-height:36px;display:inline-block;border:1px solid #E8E8E8;border-radius:5px;padding:0 0 0 8px;cursor:pointer;background:white;float:left;margin-right:9px;margin-bottom:10px;}
+.infolist .liststyle span i{display:inline-block;height:36px;line-height:36px;padding-right:30px;position:relative;}
+.infolist .liststyle span i:after{content:"";display:block;width:20px;height:36px;position:absolute;right:0;top:0;background-image:url(images/jt_nor.png);background-repeat:no-repeat;background-position:0 center;background-size:10px auto;}
+.infolist .liststyle span.active{border-radius:5px 5px 0 0;border-bottom:0;}
+.infolist .liststyle span.active i:after{background-image:url(images/jt_nar.png);}
+.infolist .liststyle span ul{width:100%;border-radius:0 0 5px 5px;position:absolute;border:1px solid #E8E8E8;background:white;left:-1px;top:36px;border-top:0;margin-bottom:10px;display:none;z-index:10;}
+.infolist .liststyle span ul li{width:100%;float:left;overflow:hidden;border-top:1px solid #E8E8E8;}
+.infolist .liststyle span ul li:first-child{border-top:0;}
+.infolist .liststyle span ul li a{display:block;height:36px;line-height:36px;padding:0 8px;color:#494949;}
+.infolist { color:#666; margin-left:13px; margin-top:-5px;}
+.liststyle { margin-left:5px; }
+.liststyle input { border:1px solid black; }
+
+
+.address_top { color:#AB0039; width:60%; float:right; }
+.main { height:100%;margin:0 auto;;width:948px; }
+.address_top { margin-top:18px; width:700px;}
+.address_main { border:1px solid #ccc; margin-top:15px; width:700px; float:right; height:460px; }
+#address { margin-top:15px; margin-left:25px; width:50px; height:60px; }
+#coupon { margin-top:15px; margin-left:25px; width:50px; height:60px; }
+.address_info { position:relative; left:50px; }
+
+.address_edit { margin-left:185px; margin-top:15px; }
+.address_edit span { font-size:14px; color:#666; }
+.address_edit input { height:25px; margin-left:10px; }
+#address_save, #info_edit { cursor:pointer; width:125px; font-weight:bold; height:30px; color:#FFF; border:none; border-radius:8px; background:#0089B7; margin-top:15px; margin-bottom:25px; margin-left:105px; }
+
+.account_top { color:#AB0039; width:60%; float:right; }
+.main { height:100%;margin:0 auto;width:948px; }
+.account_top { margin-top:18px; width:700px;}
+.account_main { border:1px solid #ccc; margin-top:15px; width:700px; float:right; height:300px; }
+#head { margin-top:15px; margin-left:25px; }
+.info { font-size:14px; color:#333; margin-left:165px; margin-top:-85px; }
+#forget { margin-left:30px; text-decoration:underline; }
+.info2 { font-size:14px; color:#333; margin-left:35px; margin-top:25px; }
+#money, #num, #wait { color:red; text-decoration:underline; }
+
+.LoginRegister { width:800px; margin:100px auto; }
+.login { float:left; width:500px; margin-left:85px; margin-top:25px; }
+.login_tip { font-size:22px; color:#AE8F00; font-weight:bold; margin-left:55px; }
+.login_seperate { color:#AE8F00; width:350px; position:relative; left:50px; top:8px; }
+.login_form { margin-top:45px; margin-left:55px; color:#666; }
+#username, #password, #newusername, #newpassword, #repassword { width:300px; height:30px; }
+#check { width:150px; height:30px; }
+.func { font-size:14px; }
+#login_submit { font-weight:bold; border-radius:8px; width:120px; height:40px; background:#DDBF7F; margin-top:15px; border:none; outline:none; cursor:pointer; color:#666; letter-spacing:4px; font-size:16px; }
+#register_submit { font-weight:bold; border-radius:8px; width:120px; height:40px; background:#DDBF7F; margin-top:15px; margin-left:20px; border:none; outline:none; cursor:pointer; color:#666; letter-spacing:4px; font-size:16px; }
+#register_submit2 { border-radius:8px; width:120px; height:40px; background:#DDBF7F; margin-top:15px; margin-left:120px; border:none; outline:none; cursor:pointer; color:#666; letter-spacing:2px; font-size:16px; }
+#find_password { color:#666; font-size:14px; margin-left:25px; }
+.register { float:left; width:500px; margin-top:25px; margin-left:85px;  }
+.register_tip { font-size:22px; color:#AE8F00; font-weight:bold; position:relative; left:55px; top:-3px; }
+.register_seperate { color:#AE8F00; width:350px; position:relative; left:50px; top:6px; }
+.register_form { margin-top:45px; margin-left:55px; color:#666; }
+
+.person_top { color:#AB0039; width:60%; float:right; }
+.main { height:100%;margin:0 auto;width:948px; }
+.person_top { margin-top:18px; width:700px;}
+.person_main { border:1px solid #ccc; margin-top:15px; width:700px; float:right; height:480px; }
+
+.info_detail { margin-left:80px; margin-top:60px; color:#666; font-size:14px; }
+.content { position:relative; left:20px; }

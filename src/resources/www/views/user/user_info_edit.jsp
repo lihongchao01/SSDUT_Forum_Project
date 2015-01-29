@@ -14,7 +14,9 @@ $(document).ready(function(){
 	    url : "getUserInfoDetail",
 	    type : "post",
 	    dataType : "json",
-	    data : {},
+	    data : {
+	    	userId : $("#userId").val()
+	    },
 	    success : function(data) {
 	    
 	    	document.getElementById("userName").innerHTML = data.row.USERNAME;
@@ -29,7 +31,7 @@ $(document).ready(function(){
 			url : "userInfoSave",
 			type : "post",
 			dataType : "json",
-			data : {"userPwd":userPwd,"realName":realName},
+			data : {"userPwd":userPwd,"realName":realName,userId : $("#userId").val()},
 			success : function(data){
 				if(data.result == "success") {
 					alert("信息保存成功!");
@@ -40,7 +42,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
 });
 
 </script>
@@ -48,8 +49,9 @@ $(document).ready(function(){
 <body>
 
 <div class="main">
-
-   
+		   
+		<input type="hidden" id="userId" value="<%=(String)request.getAttribute("userId")%>">
+		
         <span style="font-size:20px; color:#018079"><u>个人基本信息</u></span><br/><br/>
     
        

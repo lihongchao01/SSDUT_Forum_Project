@@ -7,14 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登陆</title>
+<link href="${ctx}/css/common/login.css" rel="stylesheet" type="text/css">
+<link href="${ctx}/css/common/bootstrap.css" rel="stylesheet" type="text/css">
+
 <script type="text/javascript" src="${ctx}/js/common/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/common/jcl.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#login_submit').click(function(){
 		 var userName = $('#userName').val();
-		 var userPwd = $('#userPwd').val();
-		
+		 var userPwd = $('#userPwd').val();		
 		   	 $.ajax({
 		            type : "POST",
 		            url  : "login",
@@ -31,23 +33,57 @@ $(document).ready(function(){
 		            	}
 		            }
 		     }); 
-		 
+		   	 
+		   	 
 	   });
 	$('#register_submit').click(function(){
 		  jcl.go("/SSDUT_Forum/register"); 
 	   });
 });
+
+
+
 </script>
 </head>
-<body>	
-	<div class="login_form" >
-      <span>账号 : </span>
-      <input type="text" name="userName" id="userName"  /><br/><br/>
-      <span>密码 : </span>
-      <input type="password" name="userPwd" id="userPwd"/><br/><br/>
-      <input type="button" value="登陆" id="login_submit"/>
-      <input type="button" value="注册" id="register_submit"/>
-    </div>
+<body style="background-image:url(${ctx}/images/backn.jpg); background-repeat:no-repeat;"></body>
+	<div class="container" >
 
+<div class="top" >
+ <h1 class="h6">ssduToipc</h1>
+</div>
+<div class="frame" style="background-image:url(${ctx}/images/login.png)">
+<%-- <img  class="logo"  src="${ctx}/images/登陆框.png"> --%>
+<div class="apDiv1" >
+ <ul >
+
+			<li class="mb_10"><span class="l_tit">ID  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>
+			  <input type="text" class="login_input user_icon" name="userName" id="userName">
+			</li>
+			<li class="mb_10"></li>
+            <li class="mb_10"></li>
+ </ul>
+ <ul >
+   <li class="mb_10" ><span  class="l_tit">PassWord</span><input type="password" class="login_input user_icon" name="userName" id="userPwd">
+     &nbsp;</li>
+   <li class="mb_10" ></li>
+   <li class="mb_10" >&nbsp;     
+     
+     <button  class="btn  btn-primary" id="login_submit">登陆</button>   <button  class="btn  btn-primary" id="register_submit">注册</button> 
+   </li>
+   
+   
+   
+ </ul>
+</div>
+        <div class="Login">
+          
+         
+        
+        </div>
+
+</div>
+
+</div>
+	
 </body>
 </html>

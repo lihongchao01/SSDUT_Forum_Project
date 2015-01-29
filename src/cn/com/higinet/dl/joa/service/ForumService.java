@@ -4,18 +4,20 @@ import java.util.List;
 import java.util.Map;
 
 public interface ForumService {
-	public String addTopic(Map<String, Object> reqs);
+	public String addTopic(Map<String, Object> map);
 	
-	public String  removeTopic(Map<String, Object> reqs);
+	public void removeTopic();
 	
-	public String addPost(Map<String, Object> reqs);
+	public void addPost();
 	
-	public String addForum(Map<String, Object> reqs);
+	public void addForum();
 	
-	public String removeForum(Map<String, Object> reqs);
+	public void removeForum();
 	
 	public List<Map<String, Object>> getAllForum();
 	
-	public List<Map<String, Object>> getAllTopic();
+	public List<Map<String, Object>> getAllPost(String userId);
 
+	List<Map<String, Object>> getAllPost();
+	
 }

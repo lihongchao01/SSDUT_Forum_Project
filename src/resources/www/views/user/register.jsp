@@ -26,6 +26,7 @@ $(document).ready(function(){
             success: function(data){
             	if(data.result=="success"){
             		alert("注册成功");
+            		jcl.go("/SSDUT_Forum/login"); 
             	}
             	else if(data.result=="different"){
             		alert("两次输入的密码不相同，请重新输入");
@@ -37,7 +38,7 @@ $(document).ready(function(){
             		alert("用户名已存在 ");
             	}
             }
-        }); 
+        });
 	});
 });
 
@@ -78,7 +79,6 @@ $(document).ready(function(){
 	</div>
 	
 </div>
-
 </div>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
