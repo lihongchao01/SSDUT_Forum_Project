@@ -60,6 +60,7 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userName", userName);
 		map.put("userPwd", userPwd);
+		
 		if (!userName.equals("") && !userPwd.equals("")) 
 		{
 			if (userService.user_login(map)) 
@@ -67,6 +68,8 @@ public class UserController {
 				session.setAttribute("userName", userName);
 				
 				model.set("result", "success");
+				
+				userService.loginEnsure(userName);
 				
 			} 
 			else {
@@ -141,6 +144,7 @@ public class UserController {
 	public void getAllUser(@RequestParam Map<String, Object> reqs, 
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
 		String userName = session.getAttribute("userName").toString();
+		System.out.println(userName);
 		int userType =  userService.getUserType(userService.getUserIdByUsername(userName).toString());
 		Map pageInfo = new HashMap();  
         pageInfo.put("page", 1);  

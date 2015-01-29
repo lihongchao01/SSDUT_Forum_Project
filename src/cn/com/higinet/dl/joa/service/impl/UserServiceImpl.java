@@ -1,10 +1,13 @@
 	package cn.com.higinet.dl.joa.service.impl;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javafx.scene.input.DataFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +32,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public boolean login(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return false;
+		System.out.println("true");
+		String sql = "select * from tp_users where userName=:userName and userPwd=:userPwd";
+		List<Map<String, Object>> user = joaSimpleDao.queryForList(sql, map);
+		if(user.size() == 1) {
+			
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	@Override
 	public Object register(Map<String, Object> map) {
@@ -59,6 +71,27 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void loginEnsure(String userName) {
 		// TODO Auto-generated method stub
+		String loginId = IdUtil.uuid();
+		
+		
+		java.util.Date date = new java.util.Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date loginDatetime =  new Date(date.getTime());
+		String userId = getUserIdByUsername(userName);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("loginId", loginId);
+		map.put("loginDatetime", loginDatetime);
+		//if(user_register_samenametest(map)){
+			String sql1="insert into tp_login_log (loginId,userId,loginDatetime )"
+					+ " values(:loginId,:userId,:loginDatetime)";
+			joaSimpleDao.executeUpdate(sql1, map);
+		//}
+		//else {
+			//String sql = "update tp_login_log set loginId=:loginId,userId=:userId, loginDatetime=:loginDatetime";
+			//joaSimpleDao.executeUpdate(sql, map);
+		//}
+		
 		
 	}
 	
@@ -124,6 +157,7 @@ public class UserServiceImpl implements UserService{
 		String sql = "select * from tp_users where userName=:userName and userPwd=:userPwd";
 		List<Map<String, Object>> user = joaSimpleDao.queryForList(sql, map);
 		if(user.size() == 1) {
+			
 			return true;
 		}
 		else {
@@ -141,10 +175,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<Map<String, Object>> getAllUser(int userType) {
 		// TODO Auto-generated method stub
-		String sql = "select * from tp_users where userType=2";
+		String sql = "select * from tp_users ";
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("userType", userType);
+		params.put(null, null);
+		//params.put("userType", userType);
 		return joaSimpleDao.queryForList(sql, params);
 	}
 
@@ -173,9 +208,16 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		String result = "success";
 		String sql = "delete from tp_users where userId=:userId";
-	
+		String sql2 = "delete from tp_focus where  userId1=:userId";
+		String sql3 = "delete from tp_forum_manage where  userId=:userId";
+		String sql4 = "delete from tp_post where  userId=:userId";
+		String sql5 = "delete from tp_topic  where  userId=:userId";
 		try {
 			joaSimpleDao.executeUpdate(sql, reqs);
+			joaSimpleDao.executeUpdate(sql2, reqs);
+			joaSimpleDao.executeUpdate(sql3, reqs);
+			joaSimpleDao.executeUpdate(sql4, reqs);
+			joaSimpleDao.executeUpdate(sql5, reqs);
 		
 		} catch (Exception e) {
 			// TODO: handle exception
